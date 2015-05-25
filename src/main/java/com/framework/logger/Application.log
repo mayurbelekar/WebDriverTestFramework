@@ -1,0 +1,101 @@
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] ERROR com.framework.logger.Log4JLogger  - Error Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] ERROR com.framework.logger.Log4JLogger  - Error Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] ERROR com.framework.logger.Log4JLogger  - Error Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] ERROR com.framework.logger.Log4JLogger  - Error Message
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager  - Get connection: {}->http://localhost:37473, timeout = 120000
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - [{}->http://localhost:37473] total kept alive: 0, total issued: 0, total allocated: 0 out of 2000
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - No free connections [{}->http://localhost:37473][null]
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - Available capacity: 2000 out of 2000 [{}->http://localhost:37473][null]
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - Creating new connection [{}->http://localhost:37473]
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.DefaultClientConnectionOperator  - Connecting to localhost:37473
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: best-match
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.client.protocol.RequestTargetAuthentication  - Target auth state: UNCHALLENGED
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.client.protocol.RequestProxyAuthentication  - Proxy auth state: UNCHALLENGED
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.client.DefaultHttpClient  - Attempt 1 to execute request
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.DefaultClientConnection  - Sending request: POST /session HTTP/1.1
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "POST /session HTTP/1.1[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "Accept: application/json, image/png[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "Content-Type: application/json; charset=utf-8[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "Content-Length: 130[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "Host: localhost:37473[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "Connection: Keep-Alive[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> POST /session HTTP/1.1
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> Accept: application/json, image/png
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> Content-Type: application/json; charset=utf-8
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> Content-Length: 130
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> Host: localhost:37473
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> Connection: Keep-Alive
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "{"desiredCapabilities":{"platform":"ANY","javascriptEnabled":true,"browserName":"phantomjs","takesScreenshot":false,"version":""}}"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "HTTP/1.1 200 OK[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "Cache: no-cache[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "Content-Length: 533[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.DefaultClientConnection  - Receiving response: HTTP/1.1 200 OK
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - << HTTP/1.1 200 OK
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - << Cache: no-cache
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - << Content-Length: 533
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - << Content-Type: application/json;charset=UTF-8
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.client.DefaultHttpClient  - Connection can be kept alive indefinitely
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "{"sessionId":"3ed9a2f0-fd57-11e4-80aa-f517f1dce66d","status":0,"value":{"browserName":"phantomjs","version":"2.0.0","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":false,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}}"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager  - Released connection is reusable.
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - Releasing connection [{}->http://localhost:37473][null]
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - Pooling connection [{}->http://localhost:37473][null]; keep alive indefinitely
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - Notifying no-one, there are no waiting threads
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] ERROR com.framework.logger.Log4JLogger  - Error Message
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager  - Get connection: {}->http://localhost:34439, timeout = 120000
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - [{}->http://localhost:34439] total kept alive: 0, total issued: 0, total allocated: 0 out of 2000
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - No free connections [{}->http://localhost:34439][null]
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - Available capacity: 2000 out of 2000 [{}->http://localhost:34439][null]
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - Creating new connection [{}->http://localhost:34439]
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.DefaultClientConnectionOperator  - Connecting to localhost:34439
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.client.protocol.RequestAddCookies  - CookieSpec selected: best-match
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.client.protocol.RequestAuthCache  - Auth cache not set in the context
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.client.protocol.RequestTargetAuthentication  - Target auth state: UNCHALLENGED
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.client.protocol.RequestProxyAuthentication  - Proxy auth state: UNCHALLENGED
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.client.DefaultHttpClient  - Attempt 1 to execute request
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.DefaultClientConnection  - Sending request: POST /session HTTP/1.1
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "POST /session HTTP/1.1[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "Accept: application/json, image/png[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "Content-Type: application/json; charset=utf-8[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "Content-Length: 130[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "Host: localhost:34439[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "Connection: Keep-Alive[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> POST /session HTTP/1.1
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> Accept: application/json, image/png
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> Content-Type: application/json; charset=utf-8
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> Content-Length: 130
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> Host: localhost:34439
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - >> Connection: Keep-Alive
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  >> "{"desiredCapabilities":{"platform":"ANY","javascriptEnabled":true,"browserName":"phantomjs","takesScreenshot":false,"version":""}}"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "HTTP/1.1 200 OK[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "Cache: no-cache[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "Content-Length: 533[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "[\r][\n]"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.DefaultClientConnection  - Receiving response: HTTP/1.1 200 OK
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - << HTTP/1.1 200 OK
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - << Cache: no-cache
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - << Content-Length: 533
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.headers  - << Content-Type: application/json;charset=UTF-8
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.client.DefaultHttpClient  - Connection can be kept alive indefinitely
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.wire  -  << "{"sessionId":"394fe9e0-fd5a-11e4-b4b1-174b76baf881","status":0,"value":{"browserName":"phantomjs","version":"2.0.0","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":false,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}}"
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager  - Released connection is reusable.
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - Releasing connection [{}->http://localhost:34439][null]
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - Pooling connection [{}->http://localhost:34439][null]; keep alive indefinitely
+[Forwarding newSession on session null to remote] DEBUG org.apache.http.impl.conn.tsccm.ConnPoolByRoute  - Notifying no-one, there are no waiting threads
