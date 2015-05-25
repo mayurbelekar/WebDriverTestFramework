@@ -1,0 +1,4 @@
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] ERROR com.framework.logger.Log4JLogger  - Error Message
+[main] INFO  com.framework.logger.Log4JLogger  - Information Message
+[main] ERROR com.framework.logger.Log4JLogger  - Error Message
