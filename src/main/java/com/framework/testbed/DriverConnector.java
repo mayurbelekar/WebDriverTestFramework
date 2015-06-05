@@ -44,6 +44,11 @@ public class DriverConnector {
 	public WebDriver driver;
 	public DriverCapabilities driverCapabilities = new DriverCapabilities();
 	
+	/**
+	 * This function is used to set up the Driver for the remote execution
+	 * @param config
+	 * @return RemoteWebDriver
+	 */
 	public RemoteWebDriver getRemoteWebDriver(Map<String, String> config){
 		String remoteHost = config.get("HUBHOST");
 		String remotePort = config.get("HUBPORT");
@@ -59,6 +64,11 @@ public class DriverConnector {
 		return remoteDriver;
 	}
 	
+	/**
+	 * This function is used to set up the Remote Driver in sauce labs 
+	 * @param config
+	 * @return RemoteWebDriver
+	 */
 	public RemoteWebDriver getSauceRemoteWebDriver(Map<String, String> config){
 		String remoteHost = config.get("HUBHOST");
 		String remotePort = config.get("HUBPORT");
@@ -77,6 +87,11 @@ public class DriverConnector {
 		return remoteDriver;
 	}
 	
+	/**
+	 * This function is used to set up the webdriver locally
+	 * @param browser
+	 * @return WebDriver
+	 */
 	public WebDriver getWebDriver(String browser){
 		browsername = BrowserName.valueOf(browser);
 		DesiredCapabilities capabilities = null;
@@ -141,6 +156,10 @@ public class DriverConnector {
 		return driver;
 	}
 	
+	/**
+	 * This function is used to verify the browser
+	 * @return boolean
+	 */
 	public static boolean isIE(){
 		boolean flag = false;
 		if(DriverVariables.browserName.contains("IE")){
@@ -149,6 +168,10 @@ public class DriverConnector {
 		return flag;
 	}
 	
+	/**
+	 * This function is used to verify the browser
+	 * @return boolean
+	 */
 	public static boolean isFirefox(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("FIREFOX")){
@@ -157,6 +180,10 @@ public class DriverConnector {
 		return flag;
 	}
 	
+	/**
+	 * This function is used to verify the browser
+	 * @return boolean
+	 */
 	public static boolean isChrome(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("CHROME")){
@@ -165,6 +192,10 @@ public class DriverConnector {
 		return flag;
 	}
 	
+	/**
+	 * This function is used to verify the browser
+	 * @return boolean
+	 */
 	public static boolean isSafari(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("SAFARI")){
@@ -173,6 +204,10 @@ public class DriverConnector {
 		return flag;
 	}
 	
+	/**
+	 * This function is used to verify the browser
+	 * @return boolean
+	 */
 	public static boolean isPhantomjs(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("PHANTOMJS")){
@@ -181,6 +216,10 @@ public class DriverConnector {
 		return flag;
 	}
 	
+	/**
+	 * This function is used to verify the browser
+	 * @return boolean
+	 */
 	public static boolean isOpera(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("OPERA")){
@@ -189,6 +228,10 @@ public class DriverConnector {
 		return flag;
 	}
 	
+	/**
+	 * This function is used to verify the browser
+	 * @return boolean
+	 */
 	public static boolean isAndroid(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("ANDROID")){
@@ -197,6 +240,10 @@ public class DriverConnector {
 		return flag;
 	}
 	
+	/**
+	 * This function is used to verify the browser
+	 * @return boolean
+	 */
 	public static boolean isIOS(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("IOS")){

@@ -12,15 +12,7 @@ public class DriverManager extends DriverConnector{
 
 	public ThreadLocal<WebDriver> localDriver = new ThreadLocal<WebDriver>();
 	public ThreadLocal<RemoteWebDriver> remoteDriver = new ThreadLocal<RemoteWebDriver>();
-	
-	/*public WebDriver getDriver(){221
-		return webDriver.get();
-	}
-	
-	public void setDriver(WebDriver driver){
-		webDriver.set(driver);
-	}*/
-	
+
 	/**
 	 * This function is used to set the WebDriver on local/remote/sauce
 	 * @param config
@@ -73,6 +65,10 @@ public class DriverManager extends DriverConnector{
 		return driver;
 	}
 	
+	/**
+	 * This function is used to close the browser
+	 * @param driver
+	 */
 	public void closeDriver(WebDriver driver){
 		if(localDriver.get() != null){
 			new DriverWrapper().closeDriver(driver);

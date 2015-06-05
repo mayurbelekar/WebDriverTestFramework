@@ -20,6 +20,15 @@ public class DriverCapabilities {
 	
 	DesiredCapabilities capabilities = new DesiredCapabilities();
 	
+	/**
+	 * This function is used to setup the driver capabilities for Sauce Labs
+	 * @param name
+	 * @param browser
+	 * @param version
+	 * @param osName
+	 * @param osVersion
+	 * @return DesiredCapabilities
+	 */
 	public DesiredCapabilities setSauceBrowserCapabilities(String name, String browser, String version, String osName, String osVersion) {
 		capabilities.setCapability("name", name);
 		capabilities.setCapability("os", osName);
@@ -28,6 +37,12 @@ public class DriverCapabilities {
 		return capabilities;
 	}
 	
+	/**
+	 * This function is used to set up the capabilities for the WebDrivers
+	 * @param browser
+	 * @param version
+	 * @return
+	 */
 	public DesiredCapabilities setBrowserCapabilities(String browser, String version) {
 		BrowserName browserName = BrowserName.valueOf(DriverVariables.browserName);
 		String profileName = DriverVariables.profileName;

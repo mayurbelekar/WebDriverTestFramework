@@ -498,4 +498,28 @@ public class DriverWrapper {
 		WebElement element = getWebElement(driver, locator);
 		new Select(element).selectByIndex(index);
 	}
+	
+	/**
+	 * This function is used to check the checkbox
+	 * @param driver
+	 * @param locator
+	 */
+	public void check(WebDriver driver, UIElement locator){
+		WebElement element = getWebElement(driver, locator);
+		if(!element.isSelected()){
+			element.click();
+		}
+	}
+	
+	/**
+	 * This function is used to uncheck the checkbox
+	 * @param driver
+	 * @param locator
+	 */
+	public void uncheck(WebDriver driver, UIElement locator){
+		WebElement element = getWebElement(driver, locator);
+		if(element.isSelected()){
+			element.click();
+		}
+	}
 }

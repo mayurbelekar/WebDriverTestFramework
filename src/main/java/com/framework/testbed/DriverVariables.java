@@ -71,6 +71,12 @@ public class DriverVariables {
 		return config;
 	}
 	
+	/**
+	 * This function is used to get the config file from the testng parameter
+	 * @param configFilePath
+	 * @return
+	 * @throws IOException
+	 */
 	public Map<String, String> readConfigFile(String configFilePath) throws IOException{
 		props = new Properties();
 		File configFile = new File(configFilePath);
