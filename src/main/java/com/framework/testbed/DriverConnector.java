@@ -121,9 +121,9 @@ public class DriverConnector {
 				break;
 				
 			case OPERA:
-				capabilities.setCapability("webdriver.opera.driver", ProjectFolder.getProjectFolder() + FrameworkConstants.OPERA_DRIVER_32BIT_EXE_PATH);
 				capabilities = driverCapabilities.setBrowserCapabilities(browser, null);
-				driver = new OperaDriver();
+				capabilities.setCapability("webdriver.opera.driver", ProjectFolder.getProjectFolder() + FrameworkConstants.OPERA_DRIVER_32BIT_EXE_PATH);
+				driver = new OperaDriver(capabilities);
 				break;
 				
 			case SAFARI:

@@ -2,14 +2,11 @@ package com.framework.util;
 
 import java.io.File;
 import java.io.IOException;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.Augmenter;
-import org.testng.ITestResult;
-
 import com.framework.testbed.DriverVariables;
 import com.framework.testbed.DriverConnector.ExecutionMode;
 
@@ -19,7 +16,7 @@ public class Screenshot {
 	File screenshotFolder = null;
 	File screenshot = null;
 	WebDriver augmenterDriver = null;
-	public void takesScreenshot(WebDriver driver, ITestResult iTestResult){
+	public void takesScreenshot(WebDriver driver, String folderName, String screenshotName){
 		ExecutionMode executionMode = ExecutionMode.valueOf(DriverVariables.hub);
 		switch (executionMode) {
 		case Local:
@@ -34,8 +31,6 @@ public class Screenshot {
 		default:
 			break;
 		}
-		String screenshotName = iTestResult.getName();
-		String folderName = iTestResult.getTestClass().getName().toString();
 		screenshotFolder = new File(DriverVariables.screenshotFolder + File.separator + folderName);
 		if(!screenshotFolder.exists()){
 			screenshotFolder.mkdir();
