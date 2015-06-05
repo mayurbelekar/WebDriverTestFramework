@@ -18,7 +18,7 @@ public class DriverManager extends DriverConnector{
 	 * @param config
 	 */
 	public void setWebDriverSession(Map<String, String> config){
-		ExecutionMode executionType = ExecutionMode.valueOf(config.get(FrameworkConstants.HUB));
+		ExecutionMode executionType = ExecutionMode.valueOf(DriverVariables.hub);
 		PageFactoryDesign.getPageFactoryDesign();
 		switch (executionType) {
 		case Local:
