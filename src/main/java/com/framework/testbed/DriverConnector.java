@@ -2,7 +2,9 @@ package com.framework.testbed;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,8 +13,10 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
 import com.framework.ProjectFolder;
 import com.framework.constant.FrameworkConstants;
+import com.framework.logger.Log4JLogger;
 import com.opera.core.systems.OperaDriver;
 
 public class DriverConnector {
@@ -29,49 +33,91 @@ public class DriverConnector {
         IOS
     }
 	
+	public enum ExecutionMode{
+		Local,
+		Remote,
+		Sauce
+	}
+	
 	protected BrowserName browsername;
+	protected RemoteWebDriver remoteDriver;
 	public WebDriver driver;
 	public DriverCapabilities driverCapabilities = new DriverCapabilities();
-	public WebDriver getWebDriver(){
-		BrowserName browsername = BrowserName.valueOf(DriverVariables.browserName);
-		DesiredCapabilities capabilities;
-		String seleniumHost = DriverVariables.seleniumHost;
-		String seleniumPort = DriverVariables.seleniumPort;
-		if(seleniumHost.equalsIgnoreCase("localhost")){
+	
+	public RemoteWebDriver getRemoteWebDriver(Map<String, String> config){
+		String remoteHost = config.get("HUBHOST");
+		String remotePort = config.get("HUBPORT");
+		String browser = config.get("BROWSERNAME");
+		String version = config.get("BROWSERVERSION");
+		String huburl = "http://"+remoteHost+":"+remotePort+"/wd/hub";
+		try {
+			remoteDriver = new RemoteWebDriver(new URL(huburl), driverCapabilities.setBrowserCapabilities(browser, version));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return remoteDriver;
+	}
+	
+	public RemoteWebDriver getSauceRemoteWebDriver(Map<String, String> config){
+		String remoteHost = config.get("HUBHOST");
+		String remotePort = config.get("HUBPORT");
+		String browser = config.get("BROWSERNAME");
+		String version = config.get("BROWSERVERSION");
+		String osName = config.get("OSNAME");
+		String osVersion = config.get("OSVERSION");
+		String huburl = "http://"+remoteHost+":"+remotePort+"/wd/hub";
+		String name = config.get("JOBNAME");
+		try {
+			remoteDriver = new RemoteWebDriver(new URL(huburl), driverCapabilities.setSauceBrowserCapabilities(name, browser, version, osName, osVersion));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return remoteDriver;
+	}
+	
+	public WebDriver getWebDriver(String browser){
+		browsername = BrowserName.valueOf(browser);
+		DesiredCapabilities capabilities = null;
+		try{
 			switch (browsername) {
 			case FIREFOX:
-				capabilities = driverCapabilities.setBrowserCapabilities();
+				capabilities = driverCapabilities.setBrowserCapabilities(browser, null);
 				driver = new FirefoxDriver(capabilities);
 				break;
 
 			case CHROME:
-				//capabilities = driverCapabilities.setCapabilitiesForRemoteDriver();
+				capabilities = driverCapabilities.setBrowserCapabilities(browser, null);
 				System.setProperty("webdriver.chrome.driver", ProjectFolder.getProjectFolder() + FrameworkConstants.CHROME_DRIVER_EXE_PATH);
 				driver = new ChromeDriver();
 				break;
 				
 			case IE10:
-				capabilities = driverCapabilities.setBrowserCapabilities();
+				System.setProperty("webdriver.ie.driver", ProjectFolder.getProjectFolder() + FrameworkConstants.IE_DRIVER_EXE_PATH);
+				capabilities = driverCapabilities.setBrowserCapabilities(browser, null);
 				driver = new InternetExplorerDriver(capabilities);
 				break;
 				
 			case IE11:
-				capabilities = driverCapabilities.setBrowserCapabilities();
+				System.setProperty("webdriver.ie.driver", ProjectFolder.getProjectFolder() + FrameworkConstants.IE_DRIVER_EXE_PATH);
+				capabilities = driverCapabilities.setBrowserCapabilities(browser, null);
 				driver = new InternetExplorerDriver(capabilities);
 				break;
 				
 			case OPERA:
-				capabilities = driverCapabilities.setBrowserCapabilities();
+				capabilities.setCapability("webdriver.opera.driver", ProjectFolder.getProjectFolder() + FrameworkConstants.OPERA_DRIVER_32BIT_EXE_PATH);
+				capabilities = driverCapabilities.setBrowserCapabilities(browser, null);
 				driver = new OperaDriver();
 				break;
 				
 			case SAFARI:
-				capabilities = driverCapabilities.setBrowserCapabilities();
+				capabilities = driverCapabilities.setBrowserCapabilities(browser, null);
 				driver = new SafariDriver();
 				break;
 				
 			case PHANTOMJS:
-				capabilities = driverCapabilities.setBrowserCapabilities();
+				capabilities = driverCapabilities.setBrowserCapabilities(browser, null);
 				driver = new PhantomJSDriver(capabilities);
 				break;
 				
@@ -82,27 +128,20 @@ public class DriverConnector {
 				break;
 				
 			default:
+				new Log4JLogger().info("Driver is not defined, please define the driver");
 				break;
 			}//End of switch (Launching Browser)
-		}else if(seleniumHost.equalsIgnoreCase("sauce")){
 			
-		}else{
-			capabilities = driverCapabilities.setBrowserCapabilities();
-			try {
-				driver = new RemoteWebDriver(new URL("http://"+seleniumHost+":"+seleniumPort+"/wd/hub"), capabilities);
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+		}catch(Exception e){
+			e.printStackTrace();
+			//Need to add the code for screenshot if the locator fails
 		}
-		
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
-		
 		return driver;
 	}
 	
-	public boolean isIE(){
+	public static boolean isIE(){
 		boolean flag = false;
 		if(DriverVariables.browserName.contains("IE")){
 			flag = true;
@@ -110,7 +149,7 @@ public class DriverConnector {
 		return flag;
 	}
 	
-	public boolean isFirefox(){
+	public static boolean isFirefox(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("FIREFOX")){
 			flag = true;
@@ -118,7 +157,7 @@ public class DriverConnector {
 		return flag;
 	}
 	
-	public boolean isChrome(){
+	public static boolean isChrome(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("CHROME")){
 			flag = true;
@@ -126,7 +165,7 @@ public class DriverConnector {
 		return flag;
 	}
 	
-	public boolean isSafari(){
+	public static boolean isSafari(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("SAFARI")){
 			flag = true;
@@ -134,7 +173,7 @@ public class DriverConnector {
 		return flag;
 	}
 	
-	public boolean isPhantomjs(){
+	public static boolean isPhantomjs(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("PHANTOMJS")){
 			flag = true;
@@ -142,7 +181,7 @@ public class DriverConnector {
 		return flag;
 	}
 	
-	public boolean isOpera(){
+	public static boolean isOpera(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("OPERA")){
 			flag = true;
@@ -150,7 +189,7 @@ public class DriverConnector {
 		return flag;
 	}
 	
-	public boolean isAndroid(){
+	public static boolean isAndroid(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("ANDROID")){
 			flag = true;
@@ -158,7 +197,7 @@ public class DriverConnector {
 		return flag;
 	}
 	
-	public boolean isIOS(){
+	public static boolean isIOS(){
 		boolean flag = false;
 		if(DriverVariables.browserName.equalsIgnoreCase("IOS")){
 			flag = true;

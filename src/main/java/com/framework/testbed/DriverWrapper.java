@@ -33,6 +33,7 @@ public class DriverWrapper {
         CSS,
         CLASSNAME,
         LINK,
+        PARTIALLINK,
         ID,
         NAME
     }
@@ -157,6 +158,10 @@ public class DriverWrapper {
 			
 		case LINK:
 			by = By.linkText(locator);
+			break;
+			
+		case PARTIALLINK:
+			by = By.partialLinkText(locator);
 			break;
 			
 		case ID:

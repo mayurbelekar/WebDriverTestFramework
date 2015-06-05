@@ -19,9 +19,16 @@ import com.framework.testbed.DriverConnector.BrowserName;
 public class DriverCapabilities {
 	
 	DesiredCapabilities capabilities = new DesiredCapabilities();
-	String version = null;
 	
-	public DesiredCapabilities setBrowserCapabilities() {
+	public DesiredCapabilities setSauceBrowserCapabilities(String name, String browser, String version, String osName, String osVersion) {
+		capabilities.setCapability("name", name);
+		capabilities.setCapability("os", osName);
+		capabilities.setCapability("os_version", osVersion);
+		this.setBrowserCapabilities(browser, version);
+		return capabilities;
+	}
+	
+	public DesiredCapabilities setBrowserCapabilities(String browser, String version) {
 		BrowserName browserName = BrowserName.valueOf(DriverVariables.browserName);
 		String profileName = DriverVariables.profileName;
 		switch (browserName) {
@@ -54,7 +61,6 @@ public class DriverCapabilities {
 			options.addArguments("test-type");
 			options.addArguments("--start-maximized");
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-			capabilities.setCapability("webdriver.chrome.driver", ProjectFolder.getProjectFolder() + FrameworkConstants.CHROME_DRIVER_EXE_PATH);
 			capabilities.setBrowserName("chrome");
 			if(version != null){
 				capabilities.setVersion(version);
@@ -69,8 +75,6 @@ public class DriverCapabilities {
 			capabilities.setJavascriptEnabled(true);
 			capabilities.setCapability("requireWindowFocus", true);
 			capabilities.setCapability("enablePersistentHover", false);
-			System.out.println(ProjectFolder.getProjectFolder() + FrameworkConstants.IE_DRIVER_EXE_PATH);
-			System.setProperty("webdriver.ie.driver", ProjectFolder.getProjectFolder() + FrameworkConstants.IE_DRIVER_EXE_PATH);
 			version = browserName.toString().replace("IE", "");
 			capabilities.setBrowserName("iexplorer");
 			capabilities.setVersion(version);
@@ -83,7 +87,6 @@ public class DriverCapabilities {
 			capabilities.setCapability("opera.autostart", true);
 			capabilities.setCapability("opera.port", -1);
 			capabilities.setCapability("opera.profile", "");
-			capabilities.setCapability("webdriver.opera.driver", ProjectFolder.getProjectFolder() + FrameworkConstants.OPERA_DRIVER_32BIT_EXE_PATH);
 			capabilities.setBrowserName("opera");
 			if(version != null){
 				capabilities.setVersion(version);
