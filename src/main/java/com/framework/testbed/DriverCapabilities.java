@@ -131,9 +131,17 @@ public class DriverCapabilities {
 			break;
 			
 		case ANDROID:
+			capabilities.setCapability("device", DriverVariables.device);
+			capabilities.setCapability("deviceName", DriverVariables.deviceName);
+			capabilities.setCapability("automationName", DriverVariables.automationName);
+			capabilities.setCapability("platformVersion", DriverVariables.platformVersion);
+			capabilities.setCapability("platformName", DriverVariables.platformName);
+			capabilities.setCapability("appPackage", DriverVariables.appPackage);
+			capabilities.setCapability("appActivity", DriverVariables.appActivity);
 			break;
 			
 		case IOS:
+			//yet to add
 			break;
 		}
 		return capabilities;

@@ -29,4 +29,14 @@ public class FrameworkConstants {
 	public static final String HUB_HOST = "HUBHOST";
 	public static final String HUB = "HUB";
 	//*****                        Config Constant Parameters                        *****//
+	
+	//*****                        Android Capabilities Paprmeters                        *****//
+	public static final String DEVICE = "DEVICE";
+	public static final String DEVICE_NAME = "DEVICENAME";
+	public static final String AUTOMATION_NAME = "AUTOMATIONNAME";
+	public static final String PLATFORM_VERSION = "PLATFORMVERSION";
+	public static final String PLATFORM_NAME = "PLATFORMNAME";
+	public static final String APP_PACKAGE = "APPPACKAGE";
+	public static final String APP_ACTIVITY = "APPACTIVITY";
+	//*****                        Android Capabilities Paprmeters                        *****//
 }

@@ -1,5 +1,7 @@
 package com.framework.testbed;
 
+import io.appium.java_client.android.AndroidDriver;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
@@ -137,9 +139,11 @@ public class DriverConnector {
 				break;
 				
 			case ANDROID:
+				driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), driverCapabilities.setBrowserCapabilities(browser, null));
 				break;
 				
 			case IOS:
+				//yet to add
 				break;
 				
 			default:

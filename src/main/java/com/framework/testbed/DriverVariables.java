@@ -28,6 +28,15 @@ public class DriverVariables {
 	String remotePort = null;
 	public static String hub = null;
 	public static String screenshotFolder = null;
+	/*    Android Capabilities    */
+	public static String device = null;
+	public static String deviceName = null;
+	public static String automationName = null;
+	public static String platformVersion = null;
+	public static String platformName = null;
+	public static String appPackage = null;
+	public static String appActivity = null;
+	/*    Android Capabilities    */
 	
 	/**
 	 * This function will read all the config parameters from the config file in the test project
@@ -59,6 +68,14 @@ public class DriverVariables {
 			profileName = "default";
 		}
 		
+		device = props.getProperty(FrameworkConstants.DEVICE);
+		deviceName = props.getProperty(FrameworkConstants.DEVICE_NAME);
+		automationName = props.getProperty(FrameworkConstants.AUTOMATION_NAME);
+		platformName = props.getProperty(FrameworkConstants.PLATFORM_NAME);
+		platformVersion = props.getProperty(FrameworkConstants.PLATFORM_VERSION);
+		appPackage = props.getProperty(FrameworkConstants.APP_PACKAGE);
+		appActivity = props.getProperty(FrameworkConstants.APP_ACTIVITY);
+		
 		//Adding config parameters to map
 		config.put("BROWSERNAME", browserName);
 		config.put("BROWSERVERSION", browserVersion);
@@ -66,7 +83,6 @@ public class DriverVariables {
 		config.put("OSVERSION", osVersion);
 		config.put("HUBPORT", remotePort);
 		config.put("HUBHOST", remoteHost);
-		//config.put("HUB", hub);
 		config.put("JOBNAME", name);
 		return config;
 	}

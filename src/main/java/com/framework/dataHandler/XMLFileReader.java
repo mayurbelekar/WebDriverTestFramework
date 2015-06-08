@@ -21,6 +21,14 @@ public class XMLFileReader {
 	Document document = null;
 	Element element, subElement, nodeValueElement = null;
 	NodeList nodelist, subNodelist = null;
+	
+	/**
+	 * This function is used to 
+	 * @param xmlFile
+	 * @param environmentname
+	 * @param url
+	 * @return
+	 */
 	public String getXMLValues(String xmlFile, String environmentname, String url){
 		String values = null;
 		factory = DocumentBuilderFactory.newInstance();
@@ -41,9 +49,7 @@ public class XMLFileReader {
 		element = document.getDocumentElement();
 		nodelist = element.getElementsByTagName(environmentname);
 		if(nodelist != null){
-			System.out.println(nodelist.getLength());
 			for(int i=0; i < nodelist.getLength(); i++){
-				System.out.println(nodelist.item(i).getNodeName());
 				if(nodelist.item(i).getNodeName().equalsIgnoreCase(environmentname)){
 					subElement = (Element)nodelist.item(i);
 					subNodelist = subElement.getElementsByTagName(url);
