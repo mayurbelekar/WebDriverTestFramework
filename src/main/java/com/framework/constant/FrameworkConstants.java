@@ -1,5 +1,7 @@
 package com.framework.constant;
 
+import java.io.File;
+
 
 public class FrameworkConstants {
 
@@ -16,7 +18,7 @@ public class FrameworkConstants {
 	
 	//*****                        Config Constant Parameters                        *****//
 	public static final String LOCATOR_PATH = "LOCATORPATH";
-	public static final String SCREENSHOT_FOLDER = "SCREENSHOTFOLDER";
+	public static final String SCREENSHOT_FOLDER = System.getProperty("user.dir") + File.separator + "Screenshot";
 	public static final String BROWSER_NAME = "BROWSERNAME";
 	public static final String BROWSER_VERSION = "BROWSERVERSION";
 	public static final String OS_NAME = "OSNAME";
@@ -33,10 +35,17 @@ public class FrameworkConstants {
 	//*****                        Android Capabilities Paprmeters                        *****//
 	public static final String DEVICE = "DEVICE";
 	public static final String DEVICE_NAME = "DEVICENAME";
+	public static final String DEVICE_BROWSER = "DEVICEBROWSER";
 	public static final String AUTOMATION_NAME = "AUTOMATIONNAME";
 	public static final String PLATFORM_VERSION = "PLATFORMVERSION";
 	public static final String PLATFORM_NAME = "PLATFORMNAME";
 	public static final String APP_PACKAGE = "APPPACKAGE";
 	public static final String APP_ACTIVITY = "APPACTIVITY";
+	public static final String APP_APK_PATH = "APPPATH";
+	public static final String DEVICE_ORIENTATION = "DEVICEORIENTATION";
 	//*****                        Android Capabilities Paprmeters                        *****//
+	
+	public static final String IPAD = "ipad";
+	public static final String IPHONE = "iphone";
+	public static final String ANDROID = "android";
 }

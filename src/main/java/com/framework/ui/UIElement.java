@@ -10,11 +10,16 @@ import com.framework.testbed.DriverWrapper;
 public class UIElement {
 
 	protected String uiLocator;
+	protected WebElement element;
 	
 	public UIElement(){}
 	
 	public UIElement(String locator){
 		this.uiLocator = locator;
+	}
+	
+	public void setWebElement(WebElement element){
+		this.element = element;
 	}
 	
 	public String getLocator(){
@@ -80,5 +85,9 @@ public class UIElement {
 	
 	public boolean isSelected(WebDriver driver){
 		return new DriverWrapper().isSelected(driver, this);
+	}
+	
+	public void elementToBeClickable(WebDriver driver){
+		new DriverWrapper().elementToBeClickable(driver, this);
 	}
 }

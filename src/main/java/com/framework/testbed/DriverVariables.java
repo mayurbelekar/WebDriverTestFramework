@@ -27,15 +27,17 @@ public class DriverVariables {
 	String remoteHost = null;
 	String remotePort = null;
 	public static String hub = null;
-	public static String screenshotFolder = null;
-	/*    Android Capabilities    */
+	/*    Device Capabilities    */
 	public static String device = null;
 	public static String deviceName = null;
+	public static String deviceBrowser = null;
 	public static String automationName = null;
 	public static String platformVersion = null;
 	public static String platformName = null;
 	public static String appPackage = null;
 	public static String appActivity = null;
+	public static String deviceOrientation = null;
+	public static String appAPKPath = null;
 	/*    Android Capabilities    */
 	
 	/**
@@ -56,8 +58,8 @@ public class DriverVariables {
 		profileName = props.getProperty(FrameworkConstants.PROFILE);
 		remotePort = props.getProperty(FrameworkConstants.HUB_PORT);
 		remoteHost = props.getProperty(FrameworkConstants.HUB_HOST);
-		screenshotFolder = props.getProperty(FrameworkConstants.SCREENSHOT_FOLDER);
 		hub = props.getProperty(FrameworkConstants.HUB);
+		appAPKPath = props.getProperty(FrameworkConstants.APP_APK_PATH);
 		if(seleniumPort == null){
 			seleniumPort = "4444";
 		}
@@ -70,12 +72,13 @@ public class DriverVariables {
 		
 		device = props.getProperty(FrameworkConstants.DEVICE);
 		deviceName = props.getProperty(FrameworkConstants.DEVICE_NAME);
+		deviceBrowser = props.getProperty(FrameworkConstants.DEVICE_BROWSER);
 		automationName = props.getProperty(FrameworkConstants.AUTOMATION_NAME);
 		platformName = props.getProperty(FrameworkConstants.PLATFORM_NAME);
 		platformVersion = props.getProperty(FrameworkConstants.PLATFORM_VERSION);
 		appPackage = props.getProperty(FrameworkConstants.APP_PACKAGE);
 		appActivity = props.getProperty(FrameworkConstants.APP_ACTIVITY);
-		
+		deviceOrientation = props.getProperty(FrameworkConstants.DEVICE_ORIENTATION);
 		//Adding config parameters to map
 		config.put("BROWSERNAME", browserName);
 		config.put("BROWSERVERSION", browserVersion);

@@ -1,6 +1,8 @@
 package com.framework.testbed;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,6 +25,12 @@ import com.opera.core.systems.OperaDriver;
 
 public class DriverConnector {
 
+	public enum MobileOS {
+		ANDROID,
+		IPHONE,
+		IPAD
+	}
+	
 	public enum BrowserName{
         FIREFOX,
         IE10,
@@ -31,20 +39,39 @@ public class DriverConnector {
         CHROME,
         OPERA,
         PHANTOMJS,
-        ANDROID,
-        IOS
+        DEVICE
     }
 	
 	public enum ExecutionMode{
 		Local,
+		Device,
 		Remote,
 		Sauce
 	}
 	
 	protected BrowserName browsername;
+	protected MobileOS mobileOS;
 	protected RemoteWebDriver remoteDriver;
 	public WebDriver driver;
+	public AndroidDriver androidDriver;
+	public IOSDriver iosDriver;
+	public AppiumDriver appiumDriver;
 	public DriverCapabilities driverCapabilities = new DriverCapabilities();
+	
+	/**
+	 * This function is used to launch the mobile driver (Android or IOS)
+	 * @param config
+	 * @return
+	 */
+	public WebDriver getMobileDriver(){
+		try {
+			driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723"), driverCapabilities.setBrowserCapabilities(DriverVariables.browserName, null));
+			new Log4JLogger().info("Driver Launched");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		return appiumDriver;
+	}
 	
 	/**
 	 * This function is used to set up the Driver for the remote execution
@@ -136,14 +163,6 @@ public class DriverConnector {
 			case PHANTOMJS:
 				capabilities = driverCapabilities.setBrowserCapabilities(browser, null);
 				driver = new PhantomJSDriver(capabilities);
-				break;
-				
-			case ANDROID:
-				driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), driverCapabilities.setBrowserCapabilities(browser, null));
-				break;
-				
-			case IOS:
-				//yet to add
 				break;
 				
 			default:

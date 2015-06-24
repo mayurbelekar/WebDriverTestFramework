@@ -35,7 +35,7 @@ public class SoftAsserter {
     		Assert.assertTrue(condition);
     	} catch(Throwable e) {
     		addVerificationFailure(errMsg + " Exception msg: "+e.getMessage());
-    		new Screenshot().takesScreenshot(driver, className, methodName);
+    		new Screenshot().takesScreenshot(driver);
     	}
     }
 	
@@ -50,7 +50,7 @@ public class SoftAsserter {
     		Assert.assertFalse(condition);
     	}catch(Throwable e) {
     		addVerificationFailure(errMsg + " Exception msg: "+e.getMessage());
-    		new Screenshot().takesScreenshot(driver, className, methodName);
+    		new Screenshot().takesScreenshot(driver);
     	}
     }
  
@@ -66,7 +66,7 @@ public class SoftAsserter {
     		Assert.assertEquals(actual, expected);
 		} catch(Throwable e) {
     		addVerificationFailure(errMsg + " Exception msg: "+e.getMessage());
-    		new Screenshot().takesScreenshot(driver, className, methodName);
+    		new Screenshot().takesScreenshot(driver);
 		}
     }
     
@@ -81,7 +81,7 @@ public class SoftAsserter {
     		Assert.assertEquals(actual, expected);
 		} catch(Throwable e) {
     		addVerificationFailure(" Exception msg: "+e.getMessage());
-    		new Screenshot().takesScreenshot(driver, className, methodName);
+    		new Screenshot().takesScreenshot(driver);
 		}
     }
     
@@ -96,7 +96,7 @@ public class SoftAsserter {
     		Assert.assertTrue(condition);
     	} catch(Throwable e) {
     		addVerificationFailure(" Exception msg: "+e.getMessage());
-    		new Screenshot().takesScreenshot(driver, className, methodName);
+    		new Screenshot().takesScreenshot(driver);
     	}
     }
     
@@ -111,7 +111,7 @@ public class SoftAsserter {
     		Assert.assertFalse(condition);
     	} catch(Throwable e) {
     		addVerificationFailure(" Exception msg: "+e.getMessage());
-    		new Screenshot().takesScreenshot(driver, className, methodName);
+    		new Screenshot().takesScreenshot(driver);
     	}
     }
     
@@ -125,7 +125,7 @@ public class SoftAsserter {
     		Assert.assertNotNull(actual);
 		} catch(Throwable e) {
     		addVerificationFailure(" Exception msg: "+e.getMessage());
-    		new Screenshot().takesScreenshot(driver, className, methodName);
+    		new Screenshot().takesScreenshot(driver);
 		}
     }
  
@@ -140,7 +140,7 @@ public class SoftAsserter {
     		Assert.assertNotNull(actual, errMsg);
 		} catch(Throwable e) {
     		addVerificationFailure(errMsg+" Exception msg: "+e.getMessage());
-    		new Screenshot().takesScreenshot(driver, className, methodName);
+    		new Screenshot().takesScreenshot(driver);
 		}
     }
  

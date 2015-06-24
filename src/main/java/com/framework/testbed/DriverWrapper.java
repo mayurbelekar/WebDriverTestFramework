@@ -1,5 +1,8 @@
 package com.framework.testbed;
 
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
@@ -23,8 +26,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.framework.logger.Log4JLogger;
 import com.framework.ui.UIElement;
 import com.framework.ui.UIElements;
+import com.framework.util.Screenshot;
 
-public class DriverWrapper {
+public class DriverWrapper extends DriverConnector{
 
 	WebElement element = null;
 	
@@ -35,7 +39,8 @@ public class DriverWrapper {
         LINK,
         PARTIALLINK,
         ID,
-        NAME
+        NAME,
+        UIAUTOMATOR
     }
 	
 	/**
@@ -142,43 +147,102 @@ public class DriverWrapper {
 		String locator = uiElement.getLocator();
 		LocatorType identifier = LocatorType.valueOf(locator.toUpperCase().substring(0, locator.indexOf("=")));
 		locator = locator.substring(locator.indexOf("=")+1, locator.length());
-		By by = null;
-		switch (identifier) {
-		case XPATH:
-			by = By.xpath(locator);
-			break;
+		try{
+			if(isAndroid()){
+				driver = (AndroidDriver)driver;
+			}
+			switch (identifier) {
+			case XPATH:
+				element = driver.findElement(By.xpath(locator));
+				break;
 
-		case CSS:
-			by = By.cssSelector(locator);
-			break;
-			
-		case CLASSNAME:
-			by = By.className(locator);
-			break;
-			
-		case LINK:
-			by = By.linkText(locator);
-			break;
-			
-		case PARTIALLINK:
-			by = By.partialLinkText(locator);
-			break;
-			
-		case ID:
-			by = By.id(locator);
-			break;
-			
-		case NAME:
-			by = By.name(locator);
-			break;
-			
-		default:
-			break;
+			case CSS:
+				element = driver.findElement(By.cssSelector(locator));
+				break;
+				
+			case CLASSNAME:
+				element = driver.findElement(By.className(locator));
+				break;
+				
+			case LINK:
+				element = driver.findElement(By.linkText(locator));
+				break;
+				
+			case PARTIALLINK:
+				element = driver.findElement(By.partialLinkText(locator));
+				break;
+				
+			case ID:
+				element = driver.findElement(By.id(locator));
+				break;
+				
+			case NAME:
+				element = driver.findElement(By.name(locator));
+				break;
+				
+			case UIAUTOMATOR:
+				if(isAndroid()){
+					element = ((AndroidDriver) driver).findElementByAndroidUIAutomator(locator);
+				}
+				if(isIOS()){
+					element = ((IOSDriver) driver).findElementByIosUIAutomation(locator);
+				}
+				break;
+				
+			default:
+				break;
+			}
+			WebDriverWait wait = new WebDriverWait(driver, 120);
+			wait.until(ExpectedConditions.visibilityOf(element));
+		}catch(Exception e){
+			e.printStackTrace();
+			new Screenshot().takesScreenshot(driver);
 		}
-		WebDriverWait wait = new WebDriverWait(driver, 120);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-		element = driver.findElement(by);
 		return element;
+	}
+	
+	public By getByElement(UIElement uiElement){
+		String locator = uiElement.getLocator();
+		LocatorType identifier = LocatorType.valueOf(locator.toUpperCase().substring(0, locator.indexOf("=")));
+		locator = locator.substring(locator.indexOf("=")+1, locator.length());
+		By by = null;
+		try{
+			switch (identifier) {
+			case XPATH:
+				by = By.xpath(locator);
+				break;
+
+			case CSS:
+				by = By.cssSelector(locator);
+				break;
+				
+			case CLASSNAME:
+				by = By.className(locator);
+				break;
+				
+			case LINK:
+				by = By.linkText(locator);
+				break;
+				
+			case PARTIALLINK:
+				by = By.partialLinkText(locator);
+				break;
+				
+			case ID:
+				by = By.id(locator);
+				break;
+				
+			case NAME:
+				by = By.name(locator);
+				break;
+				
+			default:
+				break;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return by;
 	}
 
 	/**
@@ -219,6 +283,7 @@ public class DriverWrapper {
 			break;
 			
 		default:
+			new Log4JLogger().info("Verify the locator property");
 			break;
 		}
 		WebDriverWait wait = new WebDriverWait(driver, 120);
@@ -521,5 +586,15 @@ public class DriverWrapper {
 		if(element.isSelected()){
 			element.click();
 		}
+	}
+	
+	public void elementToBeClickable(WebDriver driver, UIElement uiElement){
+		WebDriverWait wait = new WebDriverWait(driver, 120);
+		wait.until(ExpectedConditions.elementToBeClickable(getWebElement(driver, uiElement)));
+	}
+	
+	public void invisiblityOfTheElement(UIElement uiElement){
+		WebDriverWait wait = new WebDriverWait(driver, 120);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(getByElement(uiElement)));
 	}
 }

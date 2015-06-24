@@ -21,7 +21,7 @@ public class ProjectFolder {
 			e.printStackTrace();
 		}
 		String actualPath = path.substring(0, path.lastIndexOf("\\")+1);
-		actualPath = actualPath + getProjectName();
+		actualPath = actualPath + "TestFramework";
 		return actualPath;
 	}
 	

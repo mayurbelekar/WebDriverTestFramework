@@ -130,18 +130,26 @@ public class DriverCapabilities {
 			capabilities = DesiredCapabilities.phantomjs();
 			break;
 			
-		case ANDROID:
+		case DEVICE:
+			if(DriverVariables.device.equalsIgnoreCase(FrameworkConstants.IPAD)){
+				capabilities = DesiredCapabilities.ipad();
+			}
+			if(DriverVariables.device.equalsIgnoreCase(FrameworkConstants.IPHONE)){
+				capabilities = DesiredCapabilities.iphone();
+			}
+			if(DriverVariables.device.equalsIgnoreCase(FrameworkConstants.ANDROID)){
+				capabilities = DesiredCapabilities.android();
+			}
 			capabilities.setCapability("device", DriverVariables.device);
 			capabilities.setCapability("deviceName", DriverVariables.deviceName);
 			capabilities.setCapability("automationName", DriverVariables.automationName);
 			capabilities.setCapability("platformVersion", DriverVariables.platformVersion);
 			capabilities.setCapability("platformName", DriverVariables.platformName);
+			capabilities.setCapability("device-orientation",DriverVariables.deviceOrientation);
+			capabilities.setCapability("browserName", DriverVariables.deviceBrowser);
 			capabilities.setCapability("appPackage", DriverVariables.appPackage);
 			capabilities.setCapability("appActivity", DriverVariables.appActivity);
-			break;
-			
-		case IOS:
-			//yet to add
+			capabilities.setCapability("app", DriverVariables.appAPKPath);
 			break;
 		}
 		return capabilities;

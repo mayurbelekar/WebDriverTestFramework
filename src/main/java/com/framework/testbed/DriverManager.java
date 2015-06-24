@@ -4,14 +4,13 @@ import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
-import com.framework.constant.FrameworkConstants;
 import com.framework.factory.PageFactoryDesign;
 
 public class DriverManager extends DriverConnector{
 
 	public ThreadLocal<WebDriver> localDriver = new ThreadLocal<WebDriver>();
 	public ThreadLocal<RemoteWebDriver> remoteDriver = new ThreadLocal<RemoteWebDriver>();
+	public ThreadLocal<String> sessionId = new ThreadLocal<String>();
 
 	/**
 	 * This function is used to set the WebDriver on local/remote/sauce
@@ -22,7 +21,11 @@ public class DriverManager extends DriverConnector{
 		PageFactoryDesign.getPageFactoryDesign();
 		switch (executionType) {
 		case Local:
-			localDriver.set(super.getWebDriver(config.get("browser")));
+			localDriver.set(super.getWebDriver(DriverVariables.browserName));
+			break;
+			
+		case Device:
+			localDriver.set(super.getMobileDriver());
 			break;
 			
 		case Remote:
@@ -31,6 +34,7 @@ public class DriverManager extends DriverConnector{
 			
 		case Sauce:
 			remoteDriver.set(super.getSauceRemoteWebDriver(config));
+			sessionId.set(((RemoteWebDriver) getWebDriver()).getSessionId().toString());
 			break;
 			
 		default:
@@ -43,13 +47,16 @@ public class DriverManager extends DriverConnector{
 	 * @param config
 	 * @return WebDriver
 	 */
-	public WebDriver getWebDriver(Map<String, String> config){
+	public WebDriver getWebDriver(){
 		ExecutionMode executionMode = ExecutionMode.valueOf(DriverVariables.hub);
 		WebDriver driver = null;
 		switch (executionMode) {
 		case Local:
 			driver = localDriver.get();
 			break;
+			
+		case Device:
+			driver = localDriver.get();
 			
 		case Remote:
 			driver = remoteDriver.get();
@@ -62,6 +69,7 @@ public class DriverManager extends DriverConnector{
 		default:
 			break;
 		}
+		
 		return driver;
 	}
 	
