@@ -59,7 +59,7 @@ public class DriverVariables {
 		remotePort = props.getProperty(FrameworkConstants.HUB_PORT);
 		remoteHost = props.getProperty(FrameworkConstants.HUB_HOST);
 		hub = props.getProperty(FrameworkConstants.HUB);
-		appAPKPath = props.getProperty(FrameworkConstants.APP_APK_PATH);
+		appAPKPath = System.getProperty("user.dir") + props.getProperty(FrameworkConstants.APP_APK_PATH);
 		if(seleniumPort == null){
 			seleniumPort = "4444";
 		}
